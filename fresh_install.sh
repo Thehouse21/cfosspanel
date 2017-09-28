@@ -1,8 +1,5 @@
 #!/bin/bash
-echo "Updating sources"
-apt-get update > /dev/null
-sudo rm -rf /var/lib/apt/lists/* > /dev/null
-apt-get update > /dev/null
+
 apt-get upgrade -y --force-yes > /dev/null
 echo "Done"
 echo "Installing FOS Prerequisites..."
