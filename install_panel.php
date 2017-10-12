@@ -8,7 +8,7 @@ if (strcmp($we_root, "root") !== 0) {
 
 echo "FOS: Checking for existing installations!\r";
 shell_exec("killall -9 ffmpeg php5-fpm php-fpm nginx nginx_fos ");
-shell_exec("service php5-fpm stop > /dev/null");
+shell_exec("service php5-fpm stop ");
 shell_exec("rm -rf /usr/src/FOS-Streaming/* ");
 shell_exec("rm -rf /usr/src/FOS-Streaming/./.* ");
 shell_exec("umount /home/fos-streaming/fos/www/streams" );
