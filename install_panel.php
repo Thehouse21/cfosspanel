@@ -7,13 +7,13 @@ if (strcmp($we_root, "root") !== 0) {
 }
 
 echo "FOS: Checking for existing installations!\r";
-shell_exec("killall -9 ffmpeg php5-fpm php-fpm nginx nginx_fos > /dev/null");
+shell_exec("killall -9 ffmpeg php5-fpm php-fpm nginx nginx_fos ");
 shell_exec("service php5-fpm stop > /dev/null");
-shell_exec("rm -rf /usr/src/FOS-Streaming/* > /dev/null");
-shell_exec("rm -rf /usr/src/FOS-Streaming/./.* > /dev/null");
-shell_exec("umount /home/fos-streaming/fos/www/streams > /dev/null");
-shell_exec("umount /home/fos-streaming/fos/www/cache > /dev/null");
-shell_exec("rm -rf /home/fos-streaming > /dev/null");
+shell_exec("rm -rf /usr/src/FOS-Streaming/* ");
+shell_exec("rm -rf /usr/src/FOS-Streaming/./.* ");
+shell_exec("umount /home/fos-streaming/fos/www/streams" );
+shell_exec("umount /home/fos-streaming/fos/www/cache ");
+shell_exec("rm -rf /home/fos-streaming ");
 shell_exec("deluser fosstreaming -q");
 shell_exec("delgroup fosstreaming -q");
 
@@ -148,7 +148,7 @@ if (strcmp($release_info, "Ubuntu") || strcmp($release_info, "Debian")) {
         InstallSources($CodeName);
     }
     echo "Updating newly added sources, please hold...";
-    shell_exec("apt-get update > /dev/null");
+    shell_exec("apt-get update ");
 } else {
     echo "]FAIL. Need Ubuntu or Debian!!! \n";
     exit();
@@ -169,12 +169,12 @@ echo "##";
 
 function GetFos() {
     shell_exec("rm -rf /usr/src/FOS-Streaming/*");
-    shell_exec("git clone https://github.com/vaniusha3/IPTV-MD.git /usr/src/FOS-Streaming/ > /dev/null");
-    shell_exec("mv /usr/src/FOS-Streaming/* /home/fos-streaming/fos/www/  > /dev/null");
+    shell_exec("git clone https://github.com/vaniusha3/IPTV-MD.git /usr/src/FOS-Streaming/ ");
+    shell_exec("mv /usr/src/FOS-Streaming/* /home/fos-streaming/fos/www/  ");
     if (!file_exists("/usr/bin/composer.phar")) {
-        shell_exec("wget https://getcomposer.org/installer -O /tmp/installer  > /dev/null");
+        shell_exec("wget https://getcomposer.org/installer -O /tmp/installer ");
         shell_exec("/usr/bin/php /tmp/installer --quiet");
-        shell_exec("/bin/cp /tmp/composer.phar /usr/bin/composer.phar  > /dev/null");
+        shell_exec("/bin/cp /tmp/composer.phar /usr/bin/composer.phar  ");
     }
     shell_exec("chmod +x /usr/bin/composer.phar");
     shell_exec("/usr/bin/composer.phar install -d /home/fos-streaming/fos/www/ --quiet");
@@ -233,8 +233,8 @@ function GetFOSResources($arch) {
     } else {
         $fos = "fos-streaming_unpack_i686.tar.gz";
     }
-    shell_exec("wget http://downloads.sourceforge.net/project/iptv-md/upload/{$fos} -O /home/fos-streaming/{$fos} > /dev/null");
-    shell_exec("tar -xzf /home/fos-streaming/{$fos} -C /home/fos-streaming/ > /dev/null");
+    shell_exec("wget http://downloads.sourceforge.net/project/iptv-md/upload/{$fos} -O /home/fos-streaming/{$fos} ");
+    shell_exec("tar -xzf /home/fos-streaming/{$fos} -C /home/fos-streaming/ ");
 }
 
 function GetIP() {
@@ -367,7 +367,7 @@ foreach ($packages as $package) {
     $pack_status = shell_exec('dpkg-query -W -f=\'${Status}\\n\' ' . $package);
     $c = preg_match("/install ok installed/i", $pack_status);
     if ($c == 0) {
-        shell_exec("apt-get install -y -f --force-yes $package > /dev/null");
+        shell_exec("apt-get install -y -f --force-yes $package ");
     }
     $pak_inst++;
     if ($pak_inst == 8) {
